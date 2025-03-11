@@ -1,4 +1,4 @@
-package src.main.java.com.mycompany.Environment;
+package com.mycompany.Environment;
 
 import java.awt.image.BufferedImage;
 

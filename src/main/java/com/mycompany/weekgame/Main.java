@@ -1,4 +1,4 @@
-package src.main.java.com.mycompany.weekgame;
+package com.mycompany.weekgame;
 
 import javax.swing.JFrame;
 
