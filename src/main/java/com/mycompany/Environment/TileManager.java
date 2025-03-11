@@ -18,21 +18,23 @@ public class TileManager {
     public TileManager(GamePanel gp){
         this.gp = gp;
         
-        tiles = new Tile[2];
+        tiles = new Tile[3];
         for (int i = 0; i < tiles.length; i++){
             tiles[i] = new Tile();
         }
 
         try {
-            tiles[0].image = ImageIO.read(new File("src/Resources/Pictures/floor1.png"));
-            tiles[1].image = ImageIO.read(new File("src/Resources/Pictures/floor2.png"));
+            tiles[3].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor0.png"));
+            tiles[3].collision = true;
+            tiles[0].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor1.png"));
+            tiles[1].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor2.png"));
             tiles[1].collision = true;
         } catch (IOException e) {
             System.out.println("Error loading floor images");
             e.printStackTrace();
         }
 
-        loadMap("src/Resources/Maps/map01.txt");
+        loadMap("1WeekGame/src/Resources/Maps/map01.txt");
     }
     public void loadMap(String s){
         try (BufferedReader br = new BufferedReader(new FileReader(s))) { 
@@ -60,7 +62,7 @@ public class TileManager {
         if (colMax > 100) colMax = 100;
         for (row = 0; row < rowMax; row++) {
             for (col = 0; col < colMax; col++) {
-                g2.drawImage(tiles[map[row][col]].image, col * gp.tileSize - gp.player.player.x + gp.player.centerX, row * gp.tileSize - gp.player.player.y + gp.player.centerY, null);
+                g2.drawImage(tiles[map[row][col]].image, col * gp.tileSize - gp.player.player.x + gp.player.centerX, row * gp.tileSize - gp.player.player.y + gp.player.centerY, gp.tileSize, gp.tileSize, null);
             }
         }
         //for (int i = 0; )

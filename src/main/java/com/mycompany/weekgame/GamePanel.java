@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import javax.swing.JPanel;
 
+import com.mycompany.Entity.Enemy;
 import com.mycompany.Entity.Entity;
 import com.mycompany.Entity.Player;
 import com.mycompany.Environment.TileManager;
@@ -17,17 +18,21 @@ public class GamePanel extends JPanel implements Runnable{
 
     Thread gameThread; 
     public int FPS = 60;
-    public int tileSize = 32;
-    public int width = tileSize * 39;
-    public int height = tileSize * 22;
+    public int tileSize = 64;
+    public int width = tileSize * 39 /2;
+    public int height = tileSize * 22 /2;
 
     //Files
     public TileManager tileM = new TileManager(this);
     public ImageHandler imageH = new ImageHandler(this);
     public Entity entity = new Entity(this);
     public Player player = new Player(this);
+    public Enemy enemy = new Enemy(this);
+
+
     public MouseClickListener mcl = new MouseClickListener(this);
     public KeyboardListener kl = new KeyboardListener(this);
+
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(width, height));
@@ -51,23 +56,35 @@ public class GamePanel extends JPanel implements Runnable{
         int fps = 30;
         double lastTime = System.nanoTime();
         double currentTime;
+        long frameCount = 0;
     //Delta time loop
         @Override
         public void run() {
+            setup();
             while (gameThread.isAlive()){
                 currentTime = System.nanoTime();
                 if ((currentTime - lastTime) / 1000000000.0 > 1.0 / fps){
+                    frameCount++;
                     repaint();
-                    update();
+                    updateGame();
+                    if (frameCount% 5 == 0) updateRound();
                     repaint();
                     lastTime = currentTime;
                 }
             }
         }
 /*********************************************************************************/
-    public void update(){
+    public void setup(){
+        enemy.setupEnemies();
+    }
+    public void updateGame(){
         player.update();
     //Update stuff
+    }
+    public void updateRound(){  
+        enemy.updateRound();
+        player.updateRound();
+
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -76,6 +93,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         tileM.drawMap(g2);
         player.draw(g2);
+        enemy.draw(g2);
 
         //Draw stuff
     }

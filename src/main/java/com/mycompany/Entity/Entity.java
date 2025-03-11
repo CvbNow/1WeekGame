@@ -49,9 +49,9 @@ public class Entity {
 
     }
     public  int getTileX(){
-        return this.x / 32;
+        return this.x / gp.tileSize;
     }
     public int getTileY(){
-        return this.y / 32;
+        return this.y / gp.tileSize;
     }
 }
