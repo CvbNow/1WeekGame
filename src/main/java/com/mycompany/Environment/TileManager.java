@@ -24,17 +24,17 @@ public class TileManager {
         }
 
         try {
-            tiles[3].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor0.png"));
-            tiles[3].collision = true;
-            tiles[0].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor1.png"));
-            tiles[1].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor2.png"));
-            tiles[1].collision = true;
+            tiles[0].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor0.png"));
+           // tiles[0].collision = true;
+            tiles[1].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor1.png"));
+            tiles[2].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor2.png"));
+           // tiles[2].collision = true;
         } catch (IOException e) {
             System.out.println("Error loading floor images");
             e.printStackTrace();
         }
 
-        loadMap("1WeekGame/src/Resources/Maps/map01.txt");
+        loadMap("1WeekGame/src/Resources/Maps/map.txt");
     }
     public void loadMap(String s){
         try (BufferedReader br = new BufferedReader(new FileReader(s))) { 
@@ -66,6 +66,13 @@ public class TileManager {
             }
         }
         //for (int i = 0; )
+        //Draw minimap
+        int x = gp.width - 100*32/16;
+        for (int i = 0; i < 100; i++){
+            for (int j = 0; j< 100; j++){
+                g2.drawImage(tiles[map[i][j]].image, x + i * 2,  j* 2, 2, 2, null);
+            }
+        }
     }
     public boolean checkCollision(int x, int y){
         if (0 <= x && x < map[0].length && 0 <= y && y < map.length){
@@ -74,5 +81,6 @@ public class TileManager {
             return true;
         }
     }
+
 
 }

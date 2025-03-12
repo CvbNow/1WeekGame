@@ -14,8 +14,8 @@ public class Player {
     public Player(GamePanel gp) {
         this.gp = gp;
         player = new Entity(gp);
-        player.x = 32 * 10;
-        player.y = 32 * 10;
+        player.x = 32 * ((int)(Math.random()* 100));
+        player.y = 32 * ((int)(Math.random()* 100));
         player.type = 0;
         player.player = true;
         player.targetXPos = 0;

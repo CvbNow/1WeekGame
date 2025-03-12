@@ -15,8 +15,8 @@ public class Enemy {
     public void setupEnemies(){
         for (int i = 0; i< 10; i++){
             enemies[i] = new Entity(gp);
-            enemies[i].x = (int) (gp.tileSize * Math.random() * 100);
-            enemies[i].y = (int) (gp.tileSize * Math.random() * 100);
+            enemies[i].x = (int) (gp.tileSize * (Math.random() * 100));
+            enemies[i].y = (int) (gp.tileSize * (Math.random() * 100));
             enemies[i].type = 1;
             enemies[i].player = false;
             enemies[i].direction = (int) (Math.random() * 4);
@@ -33,12 +33,12 @@ public class Enemy {
             enemies[i].targetYPos = gp.player.player.getTileY();    
         }
         if(gp.player.roundPlayed){
-            for (int i = 0; i < 10; i++){
-                int rand = (int) (Math.random() * 4);
-                //enemies[i].direction = rand;
-                enemies[i].move(rand);
+            //Calculate distance to player
+            for (int i = 0; i< enemies.length(); i++){
+                
             }
-            
+            int distance = ()
+
         }
     }
     public void draw(Graphics2D g2){

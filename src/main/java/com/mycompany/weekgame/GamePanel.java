@@ -3,12 +3,14 @@ package com.mycompany.weekgame;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Map;
 import java.awt.Color;
 import javax.swing.JPanel;
 
 import com.mycompany.Entity.Enemy;
 import com.mycompany.Entity.Entity;
 import com.mycompany.Entity.Player;
+import com.mycompany.Environment.MapGenerator;
 import com.mycompany.Environment.TileManager;
 import com.mycompany.Image.ImageHandler;
 import com.mycompany.Listeners.KeyboardListener;
@@ -28,6 +30,8 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity entity = new Entity(this);
     public Player player = new Player(this);
     public Enemy enemy = new Enemy(this);
+
+    public MapGenerator mapGenerator = new MapGenerator(this);
 
 
     public MouseClickListener mcl = new MouseClickListener(this);
@@ -67,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable{
                     frameCount++;
                     repaint();
                     updateGame();
-                    if (frameCount% 5 == 0) updateRound();
+                    if (frameCount% 3 == 0) updateRound();
                     repaint();
                     lastTime = currentTime;
                 }
@@ -76,6 +80,8 @@ public class GamePanel extends JPanel implements Runnable{
 /*********************************************************************************/
     public void setup(){
         enemy.setupEnemies();
+        mapGenerator.generateMap();
+        tileM.loadMap("1WeekGame\\src\\Resources\\Pictures\\tileset.png");
     }
     public void updateGame(){
         player.update();
