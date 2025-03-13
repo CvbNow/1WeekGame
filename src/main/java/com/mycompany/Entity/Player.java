@@ -9,13 +9,15 @@ public class Player {
     GamePanel gp;
 
     public Entity player; 
-    public int centerX, centerY;
+    public final int centerX, centerY;
 
     public Player(GamePanel gp) {
         this.gp = gp;
         player = new Entity(gp);
-        player.x = 32 * ((int)(Math.random()* 100));
-        player.y = 32 * ((int)(Math.random()* 100));
+        player.x = gp.tileSize * Math.round( ((int)(Math.random()* 100)));
+        player.y =  gp.tileSize * Math.round(((int)(Math.random()* 100)));
+        
+        System.out.println(player.x + " " + player.y);
         player.type = 0;
         player.player = true;
         player.targetXPos = 0;
@@ -31,6 +33,10 @@ public class Player {
     Runnable set = () -> System.out.println("");
     public boolean roundPlayed = false;
 
+    public void setup(){
+        player.x = gp.mapGenerator.rooms[0][0] * gp.tileSize + (gp.mapGenerator.rooms[0][2] * gp.tileSize /2);
+        player.y= gp.mapGenerator.rooms[0][1] * gp.tileSize + (gp.mapGenerator.rooms[0][3] * gp.tileSize /2);
+    }
     public void updateRound(){
         if (roundPlayed){
             set.run();

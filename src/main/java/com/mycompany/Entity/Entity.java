@@ -16,10 +16,14 @@ public class Entity {
 
     public BufferedImage[][] image;
 
+    public int[][] path = new int[1000][2];
+    public int pathLength = 0;
+
     GamePanel gp;
     public Entity(GamePanel gp){
         this.gp = gp;
     }
+    
     public void move(int i){
       
         // 0 = up, 1 = right, 2 = down, 3 = left

@@ -14,7 +14,7 @@ public class MapGenerator {
     }
 
     int map[][] = new int[100][100];
-
+    public int rooms[][] = new int[15][4]; //x, y, width, height
 
     public void generateMap(){
         for (int i = 0; i< 100; i++){
@@ -29,7 +29,7 @@ public class MapGenerator {
         */
 
         //Random # of rooms
-        int rooms[][] = new int[15][4]; //x, y, width, height
+        rooms = new int[15][4]; //x, y, width, height
 
         int maxNumRooms = (int) Math.random() * 6 + 10; //Makes a number of rooms between  10 and 16
         int numRooms = 0;

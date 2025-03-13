@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import com.mycompany.Entity.Enemy;
 import com.mycompany.Entity.Entity;
+import com.mycompany.Entity.Pathfinding;
 import com.mycompany.Entity.Player;
 import com.mycompany.Environment.MapGenerator;
 import com.mycompany.Environment.TileManager;
@@ -32,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Enemy enemy = new Enemy(this);
 
     public MapGenerator mapGenerator = new MapGenerator(this);
-
+    public Pathfinding pathfinding = new Pathfinding(this);
 
     public MouseClickListener mcl = new MouseClickListener(this);
     public KeyboardListener kl = new KeyboardListener(this);
@@ -60,7 +61,7 @@ public class GamePanel extends JPanel implements Runnable{
         int fps = 30;
         double lastTime = System.nanoTime();
         double currentTime;
-        long frameCount = 0;
+        public long frameCount = 0;
     //Delta time loop
         @Override
         public void run() {
@@ -78,10 +79,11 @@ public class GamePanel extends JPanel implements Runnable{
             }
         }
 /*********************************************************************************/
-    public void setup(){
-        enemy.setupEnemies();
+    public void setup(){        
         mapGenerator.generateMap();
-        tileM.loadMap("1WeekGame\\src\\Resources\\Pictures\\tileset.png");
+        tileM.setup();
+        enemy.setupEnemies();
+        player.setup();
     }
     public void updateGame(){
         player.update();

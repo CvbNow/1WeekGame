@@ -25,10 +25,10 @@ public class TileManager {
 
         try {
             tiles[0].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor0.png"));
-           // tiles[0].collision = true;
+            tiles[0].collision = true;
             tiles[1].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor1.png"));
             tiles[2].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor2.png"));
-           // tiles[2].collision = true;
+            tiles[2].collision = true;
         } catch (IOException e) {
             System.out.println("Error loading floor images");
             e.printStackTrace();
@@ -60,6 +60,7 @@ public class TileManager {
         if (col < 0) col = 0;
         if (rowMax > 100) rowMax = 100;
         if (colMax > 100) colMax = 100;
+
         for (row = 0; row < rowMax; row++) {
             for (col = 0; col < colMax; col++) {
                 g2.drawImage(tiles[map[row][col]].image, col * gp.tileSize - gp.player.player.x + gp.player.centerX, row * gp.tileSize - gp.player.player.y + gp.player.centerY, gp.tileSize, gp.tileSize, null);
@@ -81,6 +82,8 @@ public class TileManager {
             return true;
         }
     }
-
+    public void setup(){
+        loadMap("1WeekGame/src/Resources/Maps/map.txt");
+    }
 
 }

@@ -15,8 +15,15 @@ public class Enemy {
     public void setupEnemies(){
         for (int i = 0; i< 10; i++){
             enemies[i] = new Entity(gp);
-            enemies[i].x = (int) (gp.tileSize * (Math.random() * 100));
-            enemies[i].y = (int) (gp.tileSize * (Math.random() * 100));
+            while (true){
+                enemies[i].x = (int) (gp.tileSize * (int)((Math.random() * 100)));
+                enemies[i].y = (int) (gp.tileSize * (int)((Math.random() * 100)));
+                if (!gp.tileM.checkCollision(enemies[i].getTileX(), enemies[i].getTileY())){
+                    break;
+                }
+            }
+            enemies[i].targetXPos = gp.player.player.getTileX();
+            enemies[i].targetYPos = gp.player.player.getTileY();
             enemies[i].type = 1;
             enemies[i].player = false;
             enemies[i].direction = (int) (Math.random() * 4);
@@ -27,18 +34,35 @@ public class Enemy {
 
     }
     public void updateRound(){
-        //Add enemy movement here
-        for (int i = 0; i < 10; i++){
-            enemies[i].targetXPos = gp.player.player.getTileX();
-            enemies[i].targetYPos = gp.player.player.getTileY();    
-        }
-        if(gp.player.roundPlayed){
-            //Calculate distance to player
-            for (int i = 0; i< enemies.length(); i++){
-                
-            }
-            int distance = ()
+        //Add enemy movement here  
 
+        if(gp.player.roundPlayed){
+            for (int i = 0; i < 10; i++){
+                enemies[i].targetXPos = gp.player.player.getTileX();
+                enemies[i].targetYPos = gp.player.player.getTileY();
+                gp.pathfinding.aStar(enemies[i]);    
+            }
+            //Move or attack
+            //Move when it can't attack. 
+
+        }
+    }
+    public void move(int index){
+        //Move to next node
+        if (enemies[index].pathLength > 0){
+            if (enemies[index].path[enemies[index].pathLength - 1][0] < enemies[index].getTileX()){ //Left
+                enemies[index].direction = 3;
+                enemies[index].move(3);
+            }else if (enemies[index].path[enemies[index].pathLength - 1][0] > enemies[index].getTileX()){//Right
+                enemies[index].direction = 1;
+                enemies[index].move(1);
+            }else if (enemies[index].path[enemies[index].pathLength - 1][1] < enemies[index].getTileY()){
+                enemies[index].direction = 0;
+                enemies[index].move(0);
+            }else if (enemies[index].path[enemies[index].pathLength - 1][1] > enemies[index].getTileY()){
+                enemies[index].direction = 2;
+                enemies[index].move(2);
+            }
         }
     }
     public void draw(Graphics2D g2){
