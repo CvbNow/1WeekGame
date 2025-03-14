@@ -40,6 +40,22 @@ public class Enemy {
         for (int i = 0; i< enemies.length; i++){
             enemies[i].type = (int) Math.random() + 1;
         }
+<<<<<<< HEAD
+=======
+        if(gp.player.roundPlayed){
+            //Calculate distance to player
+            for (int i = 0; i< enemies.length; i++){
+                int x = enemies[i].x - gp.player.player.x;
+                int y = enemies[i].y - gp.player.player.y;
+                int distance = (int) Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+            
+                if(distance < gp.tileSize*8){
+                    //move either x or y closer to player, weighted by whichever one is bigger
+                    
+                }
+            }
+        
+>>>>>>> 1102cf11f65de338a9e344506f0e523e2f9cdc51
 
     }
     public void updateRound(){
