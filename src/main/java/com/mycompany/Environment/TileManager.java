@@ -25,16 +25,15 @@ public class TileManager {
 
         try {
             tiles[0].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor0.png"));
-            tiles[0].collision = true;
+            //tiles[0].collision = true;
             tiles[1].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor1.png"));
             tiles[2].image = ImageIO.read(new File("1WeekGame/src/Resources/Pictures/floor2.png"));
-            tiles[2].collision = true;
+            //tiles[2].collision = true;
         } catch (IOException e) {
             System.out.println("Error loading floor images");
             e.printStackTrace();
         }
 
-        loadMap("1WeekGame/src/Resources/Maps/map.txt");
     }
     public void loadMap(String s){
         try (BufferedReader br = new BufferedReader(new FileReader(s))) { 

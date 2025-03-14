@@ -14,6 +14,9 @@ public class Entity {
     public int targetXPos, targetYPos;
     public int direction;
 
+    public int health; 
+    public int[] attacks;
+
     public BufferedImage[][] image;
 
     public int[][] path = new int[1000][2];
@@ -57,5 +60,9 @@ public class Entity {
     }
     public int getTileY(){
         return this.y / gp.tileSize;
+    }
+    public void attack(Entity recipient, String attack){ //Going to have to add a start an animation thingy. Saturday. 
+        recipient.health -= gp.attackM.attacks.get(attack).damage;
+        //this.startAnimation(attack);
     }
 }

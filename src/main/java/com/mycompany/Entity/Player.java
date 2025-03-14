@@ -23,6 +23,9 @@ public class Player {
         player.targetXPos = 0;
         player.targetYPos = 0;
         player.direction = 0;
+
+        player.health = 3;
+       
         player.image = gp.imageH.loadSpriteSheet("1WeekGame\\src\\Resources\\Pictures\\ninja.png");
         centerX = gp.width / 2 - gp.tileSize /2;
         centerY = gp.height / 2;
@@ -34,8 +37,8 @@ public class Player {
     public boolean roundPlayed = false;
 
     public void setup(){
-        player.x = gp.mapGenerator.rooms[0][0] * gp.tileSize + (gp.mapGenerator.rooms[0][2] * gp.tileSize /2);
-        player.y= gp.mapGenerator.rooms[0][1] * gp.tileSize + (gp.mapGenerator.rooms[0][3] * gp.tileSize /2);
+        player.x = gp.mapGenerator.rooms[0][0] * gp.tileSize;
+        player.y= gp.mapGenerator.rooms[0][1] * gp.tileSize;
     }
     public void updateRound(){
         if (roundPlayed){

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.awt.Color;
 import javax.swing.JPanel;
 
+import com.mycompany.Attacks.AttackManager;
 import com.mycompany.Entity.Enemy;
 import com.mycompany.Entity.Entity;
 import com.mycompany.Entity.Pathfinding;
@@ -34,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public MapGenerator mapGenerator = new MapGenerator(this);
     public Pathfinding pathfinding = new Pathfinding(this);
+    public AttackManager attackM = new AttackManager();
 
     public MouseClickListener mcl = new MouseClickListener(this);
     public KeyboardListener kl = new KeyboardListener(this);
@@ -82,6 +84,8 @@ public class GamePanel extends JPanel implements Runnable{
     public void setup(){        
         mapGenerator.generateMap();
         tileM.setup();
+        attackM.setup();
+        
         enemy.setupEnemies();
         player.setup();
     }

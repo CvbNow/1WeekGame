@@ -69,7 +69,7 @@ public class Pathfinding {
     }
 
     private void reconstructPath(Node current, Entity entity) {
-        System.out.println("Reconstructing path...");
+        //System.out.println("Reconstructing path...");
         //Wipe current path
         entity.pathLength = 0;
         entity.path = new int[1000][2];
